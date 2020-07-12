@@ -1,0 +1,52 @@
+#brand {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+#brand-dinas {
+    font-size: 12px;
+}
+
+#brand-sekolah {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+.dashboard {
+    padding: 0 !important;
+    height: 100vh;
+    max-height: 100vh;
+}
+
+.dashboard>#navbar {
+    height: 10vh;
+}
+
+.dashboard>#content {
+    height: 90vh;
+    width: 100vw;
+    margin-left: 0px !important;
+}
+
+.dashboard>#content>#left {
+    padding: 0px !important;
+}
+
+.sidebar-menu {
+    border-radius: 0px;
+    padding: 5px !important;
+}
+
+.sidebar-menu>.card-header {
+    padding: 0px !important;
+}
+
+.sidebar-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.sidebar-title {
+    margin-left: 15px;
+}
