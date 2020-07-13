@@ -20,7 +20,7 @@ class StudentList extends Component {
                 this.setState({ students: docs })
             })
             .catch(errors => {
-                console.log("Error when fetching students collections");
+                console.log("Error when fetching students collections", errors);
             })
     }
 

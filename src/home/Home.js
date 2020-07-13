@@ -5,7 +5,7 @@ import "./home.css"
 
 import Dashboard from './Dashboard';
 import { UserList, UserCreateOrUpdate } from './../module-user';
-import { StudentList, StudentCreateOrUpdate } from './../module-student';
+import { StudentList, StudentCOU, StudentNISN } from './../module-student';
 import { EventPage } from './../module-school-management';
 import * as ROUTES from './../constants/routes';
 import Sidemenu from './Sidemenu';
@@ -48,21 +48,16 @@ export default function Home(props) {
                             path={ROUTES.STUDENT_COU}
                             render={({ match: { url } }) => (
                                 <>
-                                    <Route path={`${url}/`} component={StudentCreateOrUpdate} exact />
-                                    <Route path={`${url}/:id`} component={StudentCreateOrUpdate} />
+                                    <Route path={`${url}/`} component={StudentCOU} exact />
+                                    <Route path={`${url}/:id`} component={StudentCOU} />
                                 </>
                             )}
                         />
-                        {/* routes manajemen sekolaj */}
-                        <Route
-                            path={`/dashboard/manajemen-sekolah`}
-                            render={({ match: { url } }) => (
-                                <>
-                                    <Route path={`${url}/berita/`} component={EventPage} />
+                        <Route path={ROUTES.STUDENT_NISN} component={StudentNISN} exact />
+                        <Route path={ROUTES.NEWS} component={EventPage} exact/>
+                        <Route path={ROUTES.NEWS_COU} component={EventPage} exact/>
 
-                                </>
-                            )}
-                        />
+
                     </div>
                 </Col>
             </Row>
