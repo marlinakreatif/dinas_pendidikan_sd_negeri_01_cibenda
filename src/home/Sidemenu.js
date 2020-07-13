@@ -24,7 +24,7 @@ export default function Sidemenu() {
                                 </li>
 
                                 <li>
-                                    <NavLink replace={true} activeClassName="sub-menu-active" to={`/dashboard/user/create-or-update/`}>
+                                    <NavLink replace={true} activeClassName="sub-menu-active" to={`/dashboard/user/create-or-update`}>
                                         <i className="fa fa-dot-circle-o" aria-hidden="true"></i> Pengguna Baru
                                 </NavLink>
                                 </li>
@@ -47,7 +47,7 @@ export default function Sidemenu() {
                                 </li>
 
                                 <li>
-                                    <NavLink replace={true} activeClassName="sub-menu-active" to={`/dashboard/student/create-or-update/ `}>
+                                    <NavLink replace={true} activeClassName="sub-menu-active" to={`/dashboard/student/create-or-update`}>
                                         <i className="fa fa-dot-circle-o" aria-hidden="true"></i> Siswa Baru
                                 </NavLink>
                                 </li>

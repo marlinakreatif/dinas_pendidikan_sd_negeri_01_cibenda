@@ -62,8 +62,8 @@ export default function Home(props) {
                                         path={`${url}/create-or-update`}
                                         render={({ match: { url } }) => (
                                             <>
-                                                <Route path={`${url}/`} component={StudentCrateOrUpdate} exact />
-                                                <Route path={`${url}/:id`} component={StudentCrateOrUpdate} />
+                                                <Route path={`${url}/`} component={StudentCreateOrUpdate} exact />
+                                                <Route path={`${url}/:id`} component={StudentCreateOrUpdate} />
                                             </>
                                         )}
                                     />
