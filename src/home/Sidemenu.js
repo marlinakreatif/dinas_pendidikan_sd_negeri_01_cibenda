@@ -1,6 +1,7 @@
 import React from 'react';
 import { Accordion, Card } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import * as ROUTES from "./../constants/routes";
+import { SubMenuItem } from './SidemenuComponent';
 
 export default function Sidemenu() {
 
@@ -18,15 +19,11 @@ export default function Sidemenu() {
                         <Card.Body className="sub-menu">
                             <ul>
                                 <li>
-                                    <NavLink exact replace={true} activeClassName="sub-menu-active" to={`/dashboard/user`}>
-                                        <i className="fa fa-dot-circle-o" aria-hidden="true"></i> Daftar Pengguna
-                                </NavLink>
+                                    <SubMenuItem icon="fa-dot-circle-o" size="fa-lg" to={ROUTES.USERS} text="Daftar Pengguna" />
                                 </li>
 
                                 <li>
-                                    <NavLink replace={true} activeClassName="sub-menu-active" to={`/dashboard/user/create-or-update`}>
-                                        <i className="fa fa-dot-circle-o" aria-hidden="true"></i> Pengguna Baru
-                                </NavLink>
+                                    <SubMenuItem icon="fa-dot-circle-o" size="fa-lg" to={ROUTES.USER_COU} text="Pengguna Baru" />
                                 </li>
                             </ul>
                         </Card.Body>
@@ -41,21 +38,15 @@ export default function Sidemenu() {
                         <Card.Body className="sub-menu">
                             <ul>
                                 <li>
-                                    <NavLink exact replace={true} activeClassName="sub-menu-active" to={`/dashboard/student`}>
-                                        <i className="fa fa-dot-circle-o" aria-hidden="true"></i> Daftar Siswa
-                                </NavLink>
+                                    <SubMenuItem icon="fa-dot-circle-o" size="fa-lg" to={ROUTES.STUDENTS} text="Daftar Siswa" />
                                 </li>
 
                                 <li>
-                                    <NavLink replace={true} activeClassName="sub-menu-active" to={`/dashboard/student/create-or-update`}>
-                                        <i className="fa fa-dot-circle-o" aria-hidden="true"></i> Siswa Baru
-                                </NavLink>
+                                    <SubMenuItem icon="fa-dot-circle-o" size="fa-lg" to={ROUTES.STUDENT_COU} text="Siswa Baru" />
                                 </li>
 
                                 <li>
-                                    <NavLink exact replace={true} activeClassName="sub-menu-active" to={`/dashboard/student/nisn-card/`}>
-                                        <i className="fa fa-dot-circle-o" aria-hidden="true"></i> Kartu NISN
-                                </NavLink>
+                                    <SubMenuItem icon="fa-dot-circle-o" size="fa-lg" to={ROUTES.STUDENT_NISN} text="Kartu NISN" />
                                 </li>
 
                             </ul>
@@ -71,9 +62,10 @@ export default function Sidemenu() {
                         <Card.Body className="sub-menu">
                             <ul>
                                 <li>
-                                    <NavLink exact replace={true} activeClassName="sub-menu-active" to={`/dashboard/manajemen-sekolah/berita`}>
-                                        <i className="fa fa-dot-circle-o" aria-hidden="true"></i> Berita
-                                </NavLink>
+                                    <SubMenuItem icon="fa-dot-circle-o" size="fa-lg" to={ROUTES.NEWS} text="Berita" />
+                                </li>
+                                <li>
+                                    <SubMenuItem icon="fa-dot-circle-o" size="fa-lg" to={ROUTES.NEWS_COU} text="Berita Baru" />
                                 </li>
                             </ul>
                         </Card.Body>

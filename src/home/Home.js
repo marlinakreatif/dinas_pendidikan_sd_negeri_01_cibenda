@@ -6,9 +6,9 @@ import "./home.css"
 import Dashboard from './Dashboard';
 import { UserList, UserCreateOrUpdate } from './../module-user';
 import { StudentList, StudentCreateOrUpdate } from './../module-student';
-import { EventPage } from './../module-school-management'
+import { EventPage } from './../module-school-management';
+import * as ROUTES from './../constants/routes';
 import Sidemenu from './Sidemenu';
-import StudentCrateOrUpdate from '../module-student/StudentCrateOrUpdate';
 
 export default function Home(props) {
     return (
@@ -32,41 +32,24 @@ export default function Home(props) {
             <Row id="content" >
                 <Col md={12} >
                     <div className="content-body">
-                        <Route path='/dashboard/' exact component={Dashboard} />
-                        {/* routes manajemen pengguna */}
+                        <Route path={ROUTES.DASHBOARD} exact component={Dashboard} />
+                        <Route path={ROUTES.USERS} component={UserList} exact />
                         <Route
-                            path={`/dashboard/user`}
+                            path={ROUTES.USER_COU}
                             render={({ match: { url } }) => (
                                 <>
-                                    <Route path={`${url}/`} component={UserList} exact />
-                                    
-                                    <Route
-                                        path={`${url}/create-or-update`}
-                                        render={({ match: { url } }) => (
-                                            <>
-                                                <Route path={`${url}/`} component={UserCreateOrUpdate} exact />
-                                                <Route path={`${url}/:id`} component={UserCreateOrUpdate} />
-                                            </>
-                                        )}
-                                    />
+                                    <Route path={`${url}/`} component={UserCreateOrUpdate} exact />
+                                    <Route path={`${url}/:id`} component={UserCreateOrUpdate} />
                                 </>
                             )}
                         />
-                        {/* routes manajemen siswa */}
+                        <Route path={ROUTES.STUDENTS} component={StudentList} exact />
                         <Route
-                            path={`/dashboard/student`}
+                            path={ROUTES.STUDENT_COU}
                             render={({ match: { url } }) => (
                                 <>
-                                    <Route path={`${url}/`} component={StudentList} exact />
-                                    <Route
-                                        path={`${url}/create-or-update`}
-                                        render={({ match: { url } }) => (
-                                            <>
-                                                <Route path={`${url}/`} component={StudentCreateOrUpdate} exact />
-                                                <Route path={`${url}/:id`} component={StudentCreateOrUpdate} />
-                                            </>
-                                        )}
-                                    />
+                                    <Route path={`${url}/`} component={StudentCreateOrUpdate} exact />
+                                    <Route path={`${url}/:id`} component={StudentCreateOrUpdate} />
                                 </>
                             )}
                         />

@@ -26,11 +26,9 @@ class Firebase {
         this.auth = app.auth();
         this.db = app.firestore();
 
-        this.auth.
-            signInWithEmailAndPassword(Email, Password)
-            .catch(errors => {
-                console.log("ERROR AUTENTICATION :", errors);
-            });
+        this.auth.signInWithEmailAndPassword(Email, Password).catch(errors => {
+            console.log("ERROR AUTENTICATION :", errors);
+        });
     }
 
     // ***********[FIREBASE API]*************

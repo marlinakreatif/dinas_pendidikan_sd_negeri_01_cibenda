@@ -3,9 +3,7 @@ import { Breadcrumb, Table } from 'react-bootstrap';
 import { withFirebase } from './../firebase-config';
 
 class UserList extends Component {
-    constructor(props) {
-        super(props);
-    }
+    
 
     componentDidMount() {
         this.props.firebase.users()
