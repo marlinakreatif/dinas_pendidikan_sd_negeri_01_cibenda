@@ -3,8 +3,9 @@ import { Route } from 'react-router-dom';
 import { Container, Navbar, Row, Col } from 'react-bootstrap';
 import "./home.css"
 
-import Dashboard from './Dashboard'
-import { UserList, UserCreateOrUpdate } from './../module-user'
+import Dashboard from './Dashboard';
+import { UserList, UserCreateOrUpdate } from './../module-user';
+import { StudentList, StudentCreateOrUpdate } from './../module-student';
 import Sidemenu from './Sidemenu';
 
 export default function Home(props) {
@@ -26,20 +27,34 @@ export default function Home(props) {
                 </Navbar.Brand>
             </Navbar>
             <Row id="content" >
-                <Col id="left" md={2} sm={4} style={{ background: "grey" }} >
+                <Col id="left" md={2} sm={4} >
                     <Sidemenu />
                 </Col>
                 <Col id="right" md={10} sm={8}>
                     <div className="content-body">
                         <Route path='/dashboard/' exact component={Dashboard} />
+                        {/* routes manajemen pengguna */}
                         <Route
                             path={`/dashboard/user`}
                             render={({ match: { url } }) => (
                                 <>
                                     <Route path={`${url}/`} component={UserList} exact />
                                     <Route
-                                        path={`${url}/:user_id`}
+                                        path={`${url}/create-or-update/:user_id`}
                                         component={UserCreateOrUpdate}
+                                    />
+                                </>
+                            )}
+                        />
+                        {/* routes manajemen siswa */}
+                        <Route
+                            path={`/dashboard/student`}
+                            render={({ match: { url } }) => (
+                                <>
+                                    <Route path={`${url}/`} component={StudentList} exact />
+                                    <Route
+                                        path={`${url}/create-or-update/:user_id`}
+                                        component={StudentCreateOrUpdate}
                                     />
                                 </>
                             )}

@@ -31,22 +31,77 @@
 
 .dashboard>#content>#left {
     padding: 0px !important;
+    background-color: teal;
+
 }
 
 .sidebar-menu {
     border-radius: 0px;
-    padding: 5px !important;
+    padding: 0 !important;
+    background-color: #015555;
+    color: white;
+}
+
+.sidebar-menu:hover {
+    cursor: pointer;
+    cursor: hand;
 }
 
 .sidebar-menu>.card-header {
-    padding: 0px !important;
-}
-
-.sidebar-icon {
-    width: 25px;
-    height: 25px;
+    padding: 0px 15px !important;
+    height: 40px;
+    line-height: 40px;
 }
 
 .sidebar-title {
     margin-left: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.sidebar-menu>.card-header {
+    border: none
+}
+
+.sub-menu {
+    padding: 0;
+    background-color: rgb(3, 158, 158);
+}
+
+.sub-menu>ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+    margin-block-end: 0;
+    font-size: 12px;
+}
+
+.sub-menu>ul>li {
+    height: 40px;
+    line-height: 40px;
+
+    border-bottom: 0.5px solid rgba(3, 255, 242, 0.5);
+}
+
+.sub-menu>ul>li:hover {
+    background-color: #0d5f5f9c;
+    cursor: pointer;
+    cursor: hand;
+    border-bottom: none;
+}
+
+.sub-menu>ul>li>a {
+    color: white;
+    padding-left: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+}
+
+.sub-menu-active {
+    background-color: #000000;
+}
+
+.sub-menu>ul>li>a>i {
+    margin-right: 15px;
+    font-weight: normal;
 }

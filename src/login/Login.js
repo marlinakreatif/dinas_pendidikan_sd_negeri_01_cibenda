@@ -44,7 +44,6 @@ export default class Login extends Component {
                                     name="email"
                                     type="email"
                                     placeholder="Enter Email"
-                                    required
                                 />
                                 {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
                             </Form.Group>
