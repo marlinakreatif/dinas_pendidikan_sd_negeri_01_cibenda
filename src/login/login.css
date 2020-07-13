@@ -1,9 +1,11 @@
 .login-body {
     width: 100vw;
     height: 100vh;
+    min-height: 632px;
     background-image: url("/bg_school.jpg");
     background-size: cover;
-    position: fixed;
+    position: relative;
+    padding-top: 100px;
 }
 
 .bg-overlay-trs {
@@ -15,7 +17,6 @@
     background-image: linear-gradient(to right,
             rgba(107, 196, 247, 0.3),
             rgba(3, 3, 3, 0.75));
-    z-index: -1;
 }
 
 .login-form {
@@ -24,7 +25,7 @@
     height: 400px;
     background-color: rgba(245, 245, 245, 0.75);
     border-radius: 10px;
-    margin: 100px auto;
+    margin: 0px auto;
     padding: 15px;
     z-index: 100;
     -webkit-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);

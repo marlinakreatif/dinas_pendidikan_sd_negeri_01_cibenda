@@ -10,8 +10,8 @@ import Sidemenu from './Sidemenu';
 
 export default function Home(props) {
     return (
-        <Container fluid={true} className="dashboard">
-            <Navbar id="navbar" bg="dark" variant="dark">
+        <Container className="dashboard">
+            <Navbar id="navbar" bg="dark" variant="dark" fixed="top">
                 <Navbar.Brand href="#dashboard">
                     <img
                         src="/kbb.png"
@@ -26,11 +26,9 @@ export default function Home(props) {
                     </div>
                 </Navbar.Brand>
             </Navbar>
+            <Sidemenu />
             <Row id="content" >
-                <Col id="left" md={2} sm={4} >
-                    <Sidemenu />
-                </Col>
-                <Col id="right" md={10} sm={8}>
+                <Col md={12} >
                     <div className="content-body">
                         <Route path='/dashboard/' exact component={Dashboard} />
                         {/* routes manajemen pengguna */}

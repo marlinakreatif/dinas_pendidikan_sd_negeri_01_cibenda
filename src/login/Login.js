@@ -16,7 +16,7 @@ export default class Login extends Component {
         if (!formData.checkValidity() === false) {
             event.stopPropagation();
         }
-        
+
         this.setState({ validated: true })
         event.preventDefault();
     }
@@ -64,6 +64,9 @@ export default class Login extends Component {
                             <Button className="btn-bottom" type="submit" >Signin</Button>
                         </Form.Row>
                     </Form>
+                </div>
+                <div className="supported-by">
+                    Supported By <span>MARLINA_KREATIF &trade;</span>
                 </div>
             </div>
         )

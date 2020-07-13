@@ -11,11 +11,6 @@ function App() {
       <Route path="/" exact component={Login} />
       <Route path="/dashboard" component={Home} />
       <Route path="/event-page" component={EventPage} />
-
-
-      <div className="supported-by">
-        Supported By <span>MARLINA_KREATIF &trade;</span>
-      </div>
     </BrowserRouter>
   );
 }
