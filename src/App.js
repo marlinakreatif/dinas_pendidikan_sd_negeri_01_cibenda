@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Login from './login/Login';
 import Home from './home/Home';
-import EventPage from './event/EventPage'
+import EventPage from './module-school-management/EventPage'
 
 function App() {
   return (

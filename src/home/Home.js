@@ -6,7 +6,9 @@ import "./home.css"
 import Dashboard from './Dashboard';
 import { UserList, UserCreateOrUpdate } from './../module-user';
 import { StudentList, StudentCreateOrUpdate } from './../module-student';
+import { EventPage } from './../module-school-management'
 import Sidemenu from './Sidemenu';
+import StudentCrateOrUpdate from '../module-student/StudentCrateOrUpdate';
 
 export default function Home(props) {
     return (
@@ -37,9 +39,15 @@ export default function Home(props) {
                             render={({ match: { url } }) => (
                                 <>
                                     <Route path={`${url}/`} component={UserList} exact />
+                                    
                                     <Route
-                                        path={`${url}/create-or-update/:user_id`}
-                                        component={UserCreateOrUpdate}
+                                        path={`${url}/create-or-update`}
+                                        render={({ match: { url } }) => (
+                                            <>
+                                                <Route path={`${url}/`} component={UserCreateOrUpdate} exact />
+                                                <Route path={`${url}/:id`} component={UserCreateOrUpdate} />
+                                            </>
+                                        )}
                                     />
                                 </>
                             )}
@@ -51,9 +59,24 @@ export default function Home(props) {
                                 <>
                                     <Route path={`${url}/`} component={StudentList} exact />
                                     <Route
-                                        path={`${url}/create-or-update/:user_id`}
-                                        component={StudentCreateOrUpdate}
+                                        path={`${url}/create-or-update`}
+                                        render={({ match: { url } }) => (
+                                            <>
+                                                <Route path={`${url}/`} component={StudentCrateOrUpdate} exact />
+                                                <Route path={`${url}/:id`} component={StudentCrateOrUpdate} />
+                                            </>
+                                        )}
                                     />
+                                </>
+                            )}
+                        />
+                        {/* routes manajemen sekolaj */}
+                        <Route
+                            path={`/dashboard/manajemen-sekolah`}
+                            render={({ match: { url } }) => (
+                                <>
+                                    <Route path={`${url}/berita/`} component={EventPage} />
+
                                 </>
                             )}
                         />

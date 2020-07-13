@@ -3,6 +3,7 @@ import { Accordion, Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 export default function Sidemenu() {
+
     return (
         <div className="sidemenu-container">
 
@@ -23,7 +24,7 @@ export default function Sidemenu() {
                                 </li>
 
                                 <li>
-                                    <NavLink exact replace={true} activeClassName="sub-menu-active" to={`/dashboard/user/create-or-update/-`}>
+                                    <NavLink replace={true} activeClassName="sub-menu-active" to={`/dashboard/user/create-or-update/`}>
                                         <i className="fa fa-dot-circle-o" aria-hidden="true"></i> Pengguna Baru
                                 </NavLink>
                                 </li>
@@ -46,7 +47,7 @@ export default function Sidemenu() {
                                 </li>
 
                                 <li>
-                                    <NavLink exact replace={true} activeClassName="sub-menu-active" to={`/dashboard/student/create-or-update/-`}>
+                                    <NavLink replace={true} activeClassName="sub-menu-active" to={`/dashboard/student/create-or-update/ `}>
                                         <i className="fa fa-dot-circle-o" aria-hidden="true"></i> Siswa Baru
                                 </NavLink>
                                 </li>
@@ -70,7 +71,7 @@ export default function Sidemenu() {
                         <Card.Body className="sub-menu">
                             <ul>
                                 <li>
-                                    <NavLink exact replace={true} activeClassName="sub-menu-active" to={`/users/super_admin`}>
+                                    <NavLink exact replace={true} activeClassName="sub-menu-active" to={`/dashboard/manajemen-sekolah/berita`}>
                                         <i className="fa fa-dot-circle-o" aria-hidden="true"></i> Berita
                                 </NavLink>
                                 </li>
