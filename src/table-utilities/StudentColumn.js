@@ -1,6 +1,6 @@
 import React from "react";
-import { HasUploadedStatus, ActionColumn, columnWidth } from "./";
-import { STUDENT_COU } from "../constants/routes";
+import { HasUploadedStatus, ActionColumn, ColumnWidth } from "./";
+import { STUDENT_UPDATE } from "../constants/routes";
 
 export const STUDENT_COLUMS = [
   {
@@ -12,19 +12,19 @@ export const STUDENT_COLUMS = [
     dataField: "nama",
     text: "Nama Siswa",
     sort: true,
-    headerStyle: () => columnWidth(150),
+    headerStyle: () => ColumnWidth(150),
   },
   {
     dataField: "nisn",
     text: "NISN",
     sort: true,
-    headerStyle: () => columnWidth(150),
+    headerStyle: () => ColumnWidth(150),
   },
   {
     dataField: "nama_ibu",
     text: "Nama Ibu",
     sort: true,
-    headerStyle: () => columnWidth(150),
+    headerStyle: () => ColumnWidth(150),
   },
   {
     dataField: "alamat",
@@ -40,7 +40,7 @@ export const STUDENT_COLUMS = [
     formatter: (cellContent, row) => {
       return <HasUploadedStatus isUploaded={row.url_rapor} />;
     },
-    headerStyle: () => columnWidth(60),
+    headerStyle: () => ColumnWidth(60),
   },
   {
     dataField: "url_kk",
@@ -48,7 +48,7 @@ export const STUDENT_COLUMS = [
     formatter: (cellContent, row) => {
       return <HasUploadedStatus isUploaded={row.url_kk} />;
     },
-    headerStyle: () => columnWidth(50),
+    headerStyle: () => ColumnWidth(50),
   },
   {
     dataField: "url_akte",
@@ -56,7 +56,7 @@ export const STUDENT_COLUMS = [
     formatter: (cellContent, row) => {
       return <HasUploadedStatus isUploaded={row.url_akte} />;
     },
-    headerStyle: () => columnWidth(50),
+    headerStyle: () => ColumnWidth(50),
   },
   {
     dataField: "url_ktp",
@@ -64,18 +64,18 @@ export const STUDENT_COLUMS = [
     formatter: (cellContent, row) => {
       return <HasUploadedStatus isUploaded={row.url_ktp} />;
     },
-    headerStyle: () => columnWidth(50),
+    headerStyle: () => ColumnWidth(50),
   },
   {
     dataField: "action",
     text: "",
     isisDummyField: true,
-    headerStyle: () => columnWidth(100),
+    headerStyle: () => ColumnWidth(100),
     formatter: (cellContent, row) => {
       return (
         <ActionColumn
           isUploaded={row.uuid}
-          editTo={`${STUDENT_COU}/${row.uuid}`}
+          editTo={`${STUDENT_UPDATE}/${row.uuid}`}
         />
       );
     },

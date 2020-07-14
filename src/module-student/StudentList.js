@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withFirebase } from "../firebase-config";
 import BootstrapTable from "react-bootstrap-table-next";
 import { TableCaption, STUDENT_COLUMS } from "../table-utilities";
-import { STUDENT_COU } from "../constants/routes";
+import { STUDENT_COU, STUDENT_CREATE } from "../constants/routes";
 
 class StudentList extends Component {
   state = {
@@ -40,7 +40,7 @@ class StudentList extends Component {
             <TableCaption
               icon="fa-users"
               title="Daftar Siswa/Siswi"
-              to={STUDENT_COU}
+              to={STUDENT_CREATE}
             />
           }
           bordered={false}

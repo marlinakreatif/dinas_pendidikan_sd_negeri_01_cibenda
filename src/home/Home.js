@@ -33,25 +33,11 @@ export default function Home(props) {
         <Container fluid>
           <Route path={ROUTES.DASHBOARD} exact component={Dashboard} />
           <Route path={ROUTES.USERS} component={UserList} exact />
-          <Route
-            path={ROUTES.USER_COU}
-            render={({ match: { url } }) => (
-              <>
-                <Route path={`${url}/`} component={UserCreateOrUpdate} exact />
-                <Route path={`${url}/:id`} component={UserCreateOrUpdate} />
-              </>
-            )}
-          />
+          <Route path={ROUTES.USER_CREATE} component={UserCreateOrUpdate} />
+          <Route path={`${ROUTES.USER_UPDATE}/:id`} component={UserCreateOrUpdate} />
           <Route path={ROUTES.STUDENTS} component={StudentList} exact />
-          <Route
-            path={ROUTES.STUDENT_COU}
-            render={({ match: { url } }) => (
-              <>
-                <Route path={`${url}/`} component={StudentCOU} exact />
-                <Route path={`${url}/:id`} component={StudentCOU} />
-              </>
-            )}
-          />
+          <Route path={ROUTES.STUDENT_CREATE} component={StudentCOU} />
+          <Route path={`${ROUTES.STUDENT_UPDATE}/:id`} component={StudentCOU} />
           <Route path={ROUTES.STUDENT_NISN} component={StudentNISN} exact />
           <Route path={ROUTES.NEWS} component={EventPage} exact />
           <Route path={ROUTES.NEWS_COU} component={EventPage} exact />

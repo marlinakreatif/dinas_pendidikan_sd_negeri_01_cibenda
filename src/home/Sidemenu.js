@@ -28,7 +28,7 @@ export default function Sidemenu() {
                   <SubMenuItem
                     icon="fa-dot-circle-o"
                     size="fa-lg"
-                    to={ROUTES.USER_COU}
+                    to={ROUTES.USER_CREATE}
                     text="Pengguna Baru"
                   />
                 </li>
@@ -57,7 +57,7 @@ export default function Sidemenu() {
                   <SubMenuItem
                     icon="fa-dot-circle-o"
                     size="fa-lg"
-                    to={ROUTES.STUDENT_COU}
+                    to={ROUTES.STUDENT_CREATE}
                     text="Siswa Baru"
                   />
                 </li>
