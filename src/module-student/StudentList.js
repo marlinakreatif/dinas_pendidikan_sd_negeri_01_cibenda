@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { withFirebase } from "../firebase-config";
 import BootstrapTable from "react-bootstrap-table-next";
-import { TableCaption , STUDENT_COLUMS } from '../table-utilities'
+import { TableCaption, STUDENT_COLUMS } from '../table-utilities';
+import { STUDENT_COU } from '../constants/routes';
 
 class StudentList extends Component {
     state = {
@@ -30,18 +31,23 @@ class StudentList extends Component {
         const { students } = this.state;
         return (
             <div>
-                
+
                 <BootstrapTable
                     keyField='uuid'
                     data={students}
                     columns={STUDENT_COLUMS}
                     bootstrap4
-                    condensed
                     caption={
-                        <TableCaption icon="fa-users" title="Daftar Siswa/Siswi" />
+                        <TableCaption
+                            icon="fa-users"
+                            title="Daftar Siswa/Siswi"
+                            to={STUDENT_COU} />
                     }
-                    classes="table-sm" />
+                    bordered={false}
+                    classes="table-sm table-responsive-xl" />
             </div>
+
+
         )
     }
 }
