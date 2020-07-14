@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { withFirebase } from "./../firebase-config";
-import { Breadcrumb, Table } from "react-bootstrap";
+import { withFirebase } from "../firebase-config";
+import BootstrapTable from "react-bootstrap-table-next";
+import { TableCaption , STUDENT_COLUMS } from '../table-utilities'
 
 class StudentList extends Component {
     state = {
@@ -14,9 +15,10 @@ class StudentList extends Component {
             .then(querySnapshots => {
                 let docs = [];
                 querySnapshots.forEach(doc => {
-                    docs.push({ ...doc.data(), id: doc.id })
+
+                    docs.push({ uuid: doc.id, ...doc.data() });
                 })
-                console.log("DOCS", docs);
+                console.log('Students', docs);
                 this.setState({ students: docs })
             })
             .catch(errors => {
@@ -25,40 +27,20 @@ class StudentList extends Component {
     }
 
     render() {
+        const { students } = this.state;
         return (
             <div>
-                <Breadcrumb>
-                    <Breadcrumb.Item href="#">Daftar Pengguna</Breadcrumb.Item>
-                </Breadcrumb>
-                <Table striped bordered hover size="sm">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td colSpan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </Table>
+                
+                <BootstrapTable
+                    keyField='uuid'
+                    data={students}
+                    columns={STUDENT_COLUMS}
+                    bootstrap4
+                    condensed
+                    caption={
+                        <TableCaption icon="fa-users" title="Daftar Siswa/Siswi" />
+                    }
+                    classes="table-sm" />
             </div>
         )
     }
