@@ -1,112 +1,109 @@
 #brand {
-    display: inline-block;
-    margin-left: 15px;
+  display: inline-block;
+  margin-left: 15px;
 }
 
 #brand-dinas {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 #brand-sekolah {
-    font-size: 18px;
-    font-weight: bold;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 #navbar {
-    height: 10vh;
-    min-height: 63px;
+  height: 10vh;
+  min-height: 63px;
 }
 
 #content {
-    height: 100vh;
-    width: 100vw ;
-    position: fixed;
-    margin: 0px !important;
-    padding: 70px 15px 15px 225px;
-    overflow: scroll;
-    z-index: 20;
-
-
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  margin: 0px !important;
+  padding: 70px 15px 15px 225px;
+  overflow: scroll;
+  z-index: 20;
 }
 
 .sidemenu-container {
-    padding: 0px !important;
-    background-color: teal;
-    position: fixed;
-    top: 63px;
-    height: 90vh;
-    width: 225px;
-    z-index: 25;
-
+  padding: 0px !important;
+  background-color: teal;
+  position: fixed;
+  top: 63px;
+  height: 90vh;
+  width: 225px;
+  z-index: 25;
 }
 
 .sidebar-menu {
-    border-radius: 0px;
-    padding: 0 !important;
-    background-color: #015555;
-    color: white;
+  border-radius: 0px;
+  padding: 0 !important;
+  background-color: #015555;
+  color: white;
 }
 
 .sidebar-menu:hover {
-    cursor: pointer;
-    cursor: hand;
+  cursor: pointer;
+  cursor: hand;
 }
 
-.sidebar-menu>.card-header {
-    padding: 0px 15px !important;
-    height: 40px;
-    line-height: 40px;
+.sidebar-menu > .card-header {
+  padding: 0px 15px !important;
+  height: 40px;
+  line-height: 40px;
 }
 
 .sidebar-title {
-    margin-left: 15px;
-    font-size: 14px;
-    font-weight: bold;
+  margin-left: 15px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
-.sidebar-menu>.card-header {
-    border: none
+.sidebar-menu > .card-header {
+  border: none;
 }
 
 .sub-menu {
-    padding: 0;
-    background-color: rgb(3, 158, 158);
+  padding: 0;
+  background-color: rgb(3, 158, 158);
 }
 
-.sub-menu>ul {
-    list-style-type: none;
-    padding-inline-start: 0;
-    margin-block-end: 0;
-    font-size: 12px;
+.sub-menu > ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+  margin-block-end: 0;
+  font-size: 12px;
 }
 
-.sub-menu>ul>li {
-    height: 40px;
-    line-height: 40px;
+.sub-menu > ul > li {
+  height: 40px;
+  line-height: 40px;
 
-    border-bottom: 0.5px solid rgba(3, 255, 242, 0.5);
+  border-bottom: 0.5px solid rgba(3, 255, 242, 0.5);
 }
 
-.sub-menu>ul>li:hover {
-    background-color: #0d5f5f9c;
-    cursor: pointer;
-    cursor: hand;
-    border-bottom: none;
+.sub-menu > ul > li:hover {
+  background-color: #0d5f5f9c;
+  cursor: pointer;
+  cursor: hand;
+  border-bottom: none;
 }
 
-.sub-menu>ul>li>a {
-    color: white;
-    padding-left: 15px;
-    text-decoration: none;
-    font-weight: bold;
-    display: block;
+.sub-menu > ul > li > a {
+  color: white;
+  padding-left: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
 }
 
 .sub-menu-active {
-    background-color: #343a40;
+  background-color: #343a40;
 }
 
-.sub-menu>ul>li>a>i {
-    margin-right: 15px;
-    font-weight: normal;
+.sub-menu > ul > li > a > i {
+  margin-right: 15px;
+  font-weight: normal;
 }

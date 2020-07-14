@@ -1,5 +1,5 @@
-export const BASE_ADMIN = `/admin`
-export const SIGNIN = '/signin'
+export const BASE_ADMIN = `/admin`;
+export const SIGNIN = "/signin";
 export const DASHBOARD = `${BASE_ADMIN}/`;
 export const USERS = `${BASE_ADMIN}/users`;
 export const USER_COU = `${BASE_ADMIN}/user-cou`;

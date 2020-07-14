@@ -1,69 +1,71 @@
 .login-body {
-    width: 100vw;
-    height: 100vh;
-    min-height: 632px;
-    background-image: url("/bg_school.jpg");
-    background-size: cover;
-    position: relative;
-    padding-top: 100px;
+  width: 100vw;
+  height: 100vh;
+  min-height: 632px;
+  background-image: url("/bg_school.jpg");
+  background-size: cover;
+  position: relative;
+  padding-top: 100px;
 }
 
 .bg-overlay-trs {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: linear-gradient(to right,
-            rgba(107, 196, 247, 0.3),
-            rgba(3, 3, 3, 0.75));
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+    to right,
+    rgba(107, 196, 247, 0.3),
+    rgba(3, 3, 3, 0.75)
+  );
 }
 
 .login-form {
-    position: relative;
-    width: 375px;
-    height: 400px;
-    background-color: rgba(245, 245, 245, 0.75);
-    border-radius: 10px;
-    margin: 0px auto;
-    padding: 15px;
-    z-index: 100;
-    -webkit-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  position: relative;
+  width: 375px;
+  height: 400px;
+  background-color: rgba(245, 245, 245, 0.75);
+  border-radius: 10px;
+  margin: 0px auto;
+  padding: 15px;
+  z-index: 100;
+  -webkit-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
-.login-form>.logo {
-    width: 25%;
-    display: inline-block;
-    text-align: center;
+.login-form > .logo {
+  width: 25%;
+  display: inline-block;
+  text-align: center;
 }
 
-.logo>img {
-    width: auto;
-    height: 60px;
+.logo > img {
+  width: auto;
+  height: 60px;
 }
 
-.login-form>.title {
-    width: 75%;
-    display: inline-block;
-    vertical-align: top;
+.login-form > .title {
+  width: 75%;
+  display: inline-block;
+  vertical-align: top;
 }
 
-.title>#dinas {
-    font-size: 16px;
-    line-height: 20px;
+.title > #dinas {
+  font-size: 16px;
+  line-height: 20px;
 }
 
-.title>#sekolah {
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 40px;
+.title > #sekolah {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 40px;
 }
 
-.btn-bottom{
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    width: 345px;
+.btn-bottom {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  width: 345px;
 }
