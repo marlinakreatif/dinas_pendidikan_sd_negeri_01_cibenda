@@ -1,6 +1,6 @@
 import React from "react";
-import { HasUploadedStatus, ActionColumn, ColumnWidth } from "./";
-import { STUDENT_UPDATE } from "../constants/routes";
+import { HasUploadedStatus, ActionColumn, ColumnWidth } from ".";
+import { STUDENT_UPDATE } from "../../constants/routes";
 
 export const STUDENT_COLUMS = [
   {

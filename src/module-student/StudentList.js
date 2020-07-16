@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withFirebase } from "../firebase-config";
 import BootstrapTable from "react-bootstrap-table-next";
-import { TableCaption, STUDENT_COLUMS } from "../table-utilities";
+import { TableCaption, STUDENT_COLUMS } from "../utilities/table";
 import { STUDENT_CREATE } from "../constants/routes";
 
 class StudentList extends Component {
