@@ -17,6 +17,3 @@ export default ({ uuid, editTo }) => {
   );
 };
 
-export const columnWidth = (width) => {
-  return { width: `${width}px` };
-};

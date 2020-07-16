@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withFirebase } from "../firebase-config";
 import BootstrapTable from "react-bootstrap-table-next";
 import { TableCaption, STUDENT_COLUMS } from "../table-utilities";
-import { STUDENT_COU, STUDENT_CREATE } from "../constants/routes";
+import { STUDENT_CREATE } from "../constants/routes";
 
 class StudentList extends Component {
   state = {
@@ -30,7 +30,7 @@ class StudentList extends Component {
   render() {
     const { students } = this.state;
     return (
-      <div>
+      <div className="content-layout">
         <BootstrapTable
           keyField="uuid"
           data={students}
