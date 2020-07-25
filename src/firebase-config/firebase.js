@@ -1,6 +1,7 @@
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBJIptHJsR1aLW4cwPdQmIpdtExZlwcN78",
@@ -28,9 +29,12 @@ class Firebase {
     this.auth.signInWithEmailAndPassword(Email, Password).catch((errors) => {
       console.log("ERROR AUTENTICATION :", errors);
     });
+    this.storage = app.storage();
   }
 
   // ***********[FIREBASE API]*************
+  batch = () => this.db.batch();
+  
   users = () => this.db.collection("users");
   user = (uuid) => this.db.doc(`users/${uuid}`);
 
@@ -39,6 +43,8 @@ class Firebase {
 
   allNews = () => this.db.collection("news");
   news = (uuid) => this.db.doc(`allNews/${uuid}`);
+
+  firebaseStorage = () => this.storage;
 }
 
 export default Firebase;

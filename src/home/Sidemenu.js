@@ -61,6 +61,15 @@ export default function Sidemenu() {
                     text="Siswa Baru"
                   />
                 </li>
+                
+                <li>
+                  <SubMenuItem
+                    icon="fa-dot-circle-o"
+                    size="fa-lg"
+                    to={ROUTES.STUDENT_IMPORT}
+                    text="Impor Data Siswa"
+                  />
+                </li>
 
                 <li>
                   <SubMenuItem

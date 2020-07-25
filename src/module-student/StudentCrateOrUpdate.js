@@ -4,6 +4,7 @@ import { Student } from "../model";
 import { OnChangeInput, YearListGenerator } from "../utilities/functional";
 import { withFirebase } from "../firebase-config";
 import { STUDENTS } from "../constants/routes";
+import { FileInputHandler } from "../components";
 
 class StudentCrateOrUpdate extends Component {
   constructor(props) {
@@ -12,6 +13,10 @@ class StudentCrateOrUpdate extends Component {
       student: new Student(912093012930, "Margono", "Banyumas", "Kaminem"),
       years: YearListGenerator(),
       validated: false,
+      kkFile: null,
+      aktaFile: null,
+      raporFile: null,
+      ktpFile: null,
     };
   }
 
@@ -185,25 +190,23 @@ class StudentCrateOrUpdate extends Component {
             <Form.Label column="sm" sm={{ span: 2, offset: 1 }}>
               Kartu Keluarga
             </Form.Label>
-            <Col sm={3}>
+            <Col sm={5}>
               <Form.Control
                 size="sm"
-                maxLength="4"
-                minLength="4"
                 type="file"
                 placeholder="unggah kartu keluarga"
               />
             </Col>
-            <Form.Label column="sm" sm={{ span: 2 }}>
+          </Form.Group>
+          <Form.Group as={Row} controlId="kartu_keluarga">
+            <Form.Label column="sm"sm={{ span: 2, offset: 1 }}>
               KTP Orang Tua
             </Form.Label>
-            <Col sm={3}>
-              <Form.Control
-                size="sm"
-                maxLength="4"
-                minLength="4"
-                type="file"
-                placeholder="unggah KTP orang tua"
+            <Col sm={5}>
+              <FileInputHandler
+                defaultValue={student.url_ktp}
+                onFileChange={(event) => console.log(event)}
+                onFileDelete={() => console.log("DELETED")}
               />
             </Col>
           </Form.Group>
@@ -212,27 +215,21 @@ class StudentCrateOrUpdate extends Component {
             <Form.Label column="sm" sm={{ span: 2, offset: 1 }}>
               Akta Kelahiran
             </Form.Label>
-            <Col sm={3}>
+            <Col sm={5}>
               <Form.Control
                 size="sm"
-                maxLength="4"
-                minLength="4"
                 type="file"
                 placeholder="unggah akta kelahiran"
               />
             </Col>
+          </Form.Group>
 
-            <Form.Label column="sm" sm={{ span: 2 }}>
+          <Form.Group as={Row} controlId="akta">
+            <Form.Label column="sm" sm={{ span: 2, offset: 1 }}>
               Rapor Siswa
             </Form.Label>
-            <Col sm={3}>
-              <Form.Control
-                size="sm"
-                maxLength="4"
-                minLength="4"
-                type="file"
-                placeholder="unggah rapor"
-              />
+            <Col sm={5}>
+              <Form.Control size="sm" type="file" placeholder="unggah rapor" />
             </Col>
           </Form.Group>
           <hr />

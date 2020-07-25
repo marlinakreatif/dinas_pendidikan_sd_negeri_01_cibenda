@@ -1,11 +1,17 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import {  Navbar } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import "./home.css";
 
 import Dashboard from "./Dashboard";
 import { UserList, UserCreateOrUpdate } from "./../module-user";
-import { StudentList, StudentCOU, StudentNISN } from "./../module-student";
+import {
+  StudentList,
+  StudentCOU,
+  StudentNISN,
+  StudentImport,
+  StudentDocument,
+} from "./../module-student";
 import { EventPage } from "../module-school";
 import * as ROUTES from "./../constants/routes";
 import Sidemenu from "./Sidemenu";
@@ -41,6 +47,13 @@ export default function Home(props) {
         <Route path={ROUTES.STUDENT_CREATE} component={StudentCOU} />
         <Route path={`${ROUTES.STUDENT_UPDATE}/:id`} component={StudentCOU} />
         <Route path={ROUTES.STUDENT_NISN} component={StudentNISN} exact />
+        <Route path={ROUTES.STUDENT_IMPORT} component={StudentImport} exact />
+        <Route
+          path={ROUTES.STUDENT_DOCUMENT}
+          component={StudentDocument}
+          exact
+        />
+
         <Route path={ROUTES.NEWS} component={EventPage} exact />
         <Route path={ROUTES.NEWS_COU} component={EventPage} exact />
       </div>
