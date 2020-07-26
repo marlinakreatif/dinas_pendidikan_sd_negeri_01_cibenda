@@ -14,3 +14,15 @@ body {
 .supported-by > span {
   font-weight: bold;
 }
+
+.react-datepicker-wrapper,
+.react-datepicker-wrapper > .react-datepicker__input-container > input {
+  width: 100% !important;
+}
+.react-datepicker-wrapper > .react-datepicker__input-container > input {
+  border: 1px solid #ced4da;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #495057;
+}

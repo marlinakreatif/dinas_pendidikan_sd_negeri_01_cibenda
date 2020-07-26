@@ -1,17 +1,59 @@
 import React, { Component } from "react";
 import { withFirebase } from "../firebase-config";
-import { Form, Row, Col } from "react-bootstrap";
+import { Form, Row, Col, Button } from "react-bootstrap";
 import { TableCaption } from "../utilities/table";
+import { STUDENTS } from "../constants/routes";
+import { Student } from "../model";
 
 class StudentDocument extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { student: new Student() };
+  }
+  componentDidMount() {
+    const { firebase } = this.props;
+    const { id } = this.props.match.params;
+    firebase
+      .student(id)
+      .get()
+      .then((doc) => {
+        this.setState({
+          student: doc.data(),
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   render() {
+    const { student } = this.state;
     return (
       <div className="content-layout">
         <Form>
-          <TableCaption
-            icon="fa-users"
-            title="Kelengkapan Dokumen Siswa"
-          />
+          <TableCaption icon="fa-users" title="Kelengkapan Dokumen Siswa" />
+          <hr />
+          <Row>
+            <Col sm={{ span: 2, offset: 1 }}>Nama siswa</Col>
+            <Col sm={4}>{student.nama}</Col>
+            <Col sm={2}>No. NISN</Col>
+            <Col sm={3}>{student.nisn}</Col>
+          </Row>
+          <Row>
+            <Col sm={{ span: 2, offset: 1 }}>Nama Ibu</Col>
+            <Col sm={4}>{student.nama_ibu}</Col>
+            <Col sm={2}>Alamat</Col>
+            <Col sm={3}>{student.alamat}</Col>
+          </Row>
+          <Row>
+            <Col sm={{ span: 2, offset: 1 }}>Tempat Lahi</Col>
+            <Col sm={4}>{student.tempat_lahir}</Col>
+            <Col sm={2}>Tanggal Lahir</Col>
+            <Col sm={3}>{student.tanggal_lahir.toString()}</Col>
+          </Row>
+          <Row>
+            <Col sm={{ span: 2, offset: 1 }}>Tahun Masuk</Col>
+            <Col sm={4}>{student.tahun_masuk}</Col>
+          </Row>
           <hr />
           <Form.Group as={Row} controlId="kartu_keluarga">
             <Form.Label column="sm" sm={{ span: 2, offset: 1 }}>
@@ -60,6 +102,19 @@ class StudentDocument extends Component {
             </Col>
           </Form.Group>
         </Form>
+        <hr />
+        <Form.Group as={Row}>
+          <Col sm={{ span: 10, offset: 1 }}>
+            <Button
+              className="m-1"
+              type="button"
+              variant="secondary"
+              onClick={() => this.props.history.push(STUDENTS)}
+            >
+              Kembali
+            </Button>
+          </Col>
+        </Form.Group>
       </div>
     );
   }

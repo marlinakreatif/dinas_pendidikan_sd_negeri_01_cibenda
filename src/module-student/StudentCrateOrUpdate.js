@@ -4,20 +4,44 @@ import { Student } from "../model";
 import { OnChangeInput, YearListGenerator } from "../utilities/functional";
 import { withFirebase } from "../firebase-config";
 import { STUDENTS } from "../constants/routes";
-import { FileInputHandler } from "../components";
+import DatePicker from "react-datepicker";
+import { Loading } from "../components";
 
 class StudentCrateOrUpdate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      student: new Student(912093012930, "Margono", "Banyumas", "Kaminem"),
+      student: new Student(),
       years: YearListGenerator(),
       validated: false,
       kkFile: null,
       aktaFile: null,
       raporFile: null,
       ktpFile: null,
+      id: null,
+      isLoading: false,
     };
+  }
+
+  componentDidMount() {
+    const { firebase } = this.props;
+    const { id } = this.props.match.params;
+    if (id) {
+      firebase
+        .student(id)
+        .get()
+        .then((doc) => {
+          let student = doc.data();
+          student.tanggal_lahir = student.tanggal_lahir.toDate();
+          this.setState({
+            student,
+            id,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   onChange = (event) => {
@@ -26,31 +50,59 @@ class StudentCrateOrUpdate extends Component {
     });
   };
 
+  dataChange = (date) => {
+    let { student } = this.state;
+    student.tanggal_lahir = date;
+    this.setState({ student });
+  };
+
   onSubmitForm = (event) => {
     let formData = event.target;
+    const { student, id } = this.state;
     let { history } = this.props;
     event.preventDefault();
     if (!formData.checkValidity() === false) {
-      const { student } = this.state;
-      this.props.firebase
-        .students()
-        .add({ ...student })
-        .then(function (docRef) {
-          console.log("Document written with ID: ", docRef.id);
-          history.push(STUDENTS);
-        })
-        .catch(function (error) {
-          console.error("Error adding document: ", error);
-        });
+      this.setState({
+        isLoading:true
+      })
+      if (id) {
+        this.saveUpdate(id, student, history);
+      } else {
+        this.saveNew(student, history);
+      }
     } else {
       this.setState({ validated: true });
     }
   };
 
+  saveNew = (student, history) => {
+    this.props.firebase
+      .students()
+      .add({ ...student })
+      .then(function (docRef) {
+        history.push(STUDENTS);
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+  };
+  saveUpdate = (id, student, history) => {
+    this.props.firebase
+      .student(id)
+      .set({ ...student })
+      .then(function (docRef) {
+        history.push(STUDENTS);
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+  };
+
   render() {
-    const { student, years, validated } = this.state;
+    const { student, years, validated, isLoading } = this.state;
     return (
       <div className="content-layout">
+        {isLoading && <Loading />}
         <Form noValidate validated={validated} onSubmit={this.onSubmitForm}>
           <Row>
             <Col sm={{ span: 10, offset: 1 }}>
@@ -131,14 +183,11 @@ class StudentCrateOrUpdate extends Component {
               Tanggal Lahir*
             </Form.Label>
             <Col sm={5}>
-              <Form.Control
-                size="sm"
-                type="text"
-                name="tanggal_lahir"
-                required
-                placeholder="Tempat Kelahiran"
-                onChange={this.onChange}
-                defaultValue={student.tanggal_lahir}
+              <DatePicker
+                selected={student.tanggal_lahir}
+                onChange={this.dataChange}
+                isClearable
+                placeholderText="MM/DD/YYYY"
               />
             </Col>
           </Form.Group>

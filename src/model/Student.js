@@ -13,7 +13,7 @@ export class Student {
     this.nama_ibu = nama_ibu ? nama_ibu : "";
     this.alamat = alamat ? alamat : "";
     this.tempat_lahir = tempat_lahir ? tempat_lahir : "";
-    this.tanggal_lahir = tanggal_lahir ? tanggal_lahir : new Date();
+    this.tanggal_lahir = tanggal_lahir ? tanggal_lahir : new Date('11/22/1991');
     this.tahun_masuk = tahun_masuk ? tahun_masuk : "";
     this.url_kk = "";
     this.url_akte = "";
