@@ -186,54 +186,6 @@ class StudentCrateOrUpdate extends Component {
           </Form.Group>
           <hr />
 
-          <Form.Group as={Row} controlId="kartu_keluarga">
-            <Form.Label column="sm" sm={{ span: 2, offset: 1 }}>
-              Kartu Keluarga
-            </Form.Label>
-            <Col sm={5}>
-              <Form.Control
-                size="sm"
-                type="file"
-                placeholder="unggah kartu keluarga"
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} controlId="kartu_keluarga">
-            <Form.Label column="sm"sm={{ span: 2, offset: 1 }}>
-              KTP Orang Tua
-            </Form.Label>
-            <Col sm={5}>
-              <FileInputHandler
-                defaultValue={student.url_ktp}
-                onFileChange={(event) => console.log(event)}
-                onFileDelete={() => console.log("DELETED")}
-              />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row} controlId="akta">
-            <Form.Label column="sm" sm={{ span: 2, offset: 1 }}>
-              Akta Kelahiran
-            </Form.Label>
-            <Col sm={5}>
-              <Form.Control
-                size="sm"
-                type="file"
-                placeholder="unggah akta kelahiran"
-              />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row} controlId="akta">
-            <Form.Label column="sm" sm={{ span: 2, offset: 1 }}>
-              Rapor Siswa
-            </Form.Label>
-            <Col sm={5}>
-              <Form.Control size="sm" type="file" placeholder="unggah rapor" />
-            </Col>
-          </Form.Group>
-          <hr />
-
           <Form.Group as={Row}>
             <Col sm={{ span: 10, offset: 1 }}>
               <Button type="submit">Simpan</Button>

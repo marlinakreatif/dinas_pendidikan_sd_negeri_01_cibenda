@@ -46,6 +46,10 @@ export default function Home(props) {
         <Route path={ROUTES.STUDENTS} component={StudentList} exact />
         <Route path={ROUTES.STUDENT_CREATE} component={StudentCOU} />
         <Route path={`${ROUTES.STUDENT_UPDATE}/:id`} component={StudentCOU} />
+        <Route
+          path={`${ROUTES.STUDENT_DOCUMENT}/:id`}
+          component={StudentDocument}
+        />
         <Route path={ROUTES.STUDENT_NISN} component={StudentNISN} exact />
         <Route path={ROUTES.STUDENT_IMPORT} component={StudentImport} exact />
         <Route

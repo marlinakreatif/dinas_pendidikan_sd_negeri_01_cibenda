@@ -1,6 +1,6 @@
 import React from "react";
 import { HasUploadedStatus, ActionColumn, ColumnWidth } from ".";
-import { STUDENT_UPDATE } from "../../constants/routes";
+import { STUDENT_UPDATE, STUDENT_DOCUMENT } from "../../constants/routes";
 
 export const STUDENT_COLUMS = [
   {
@@ -76,6 +76,7 @@ export const STUDENT_COLUMS = [
         <ActionColumn
           isUploaded={row.uuid}
           editTo={`${STUDENT_UPDATE}/${row.uuid}`}
+          addDocTo={`${STUDENT_DOCUMENT}/${row.uuid}`}
         />
       );
     },
