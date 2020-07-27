@@ -19,22 +19,22 @@ const Password = "123456";
 
 class Firebase {
   constructor() {
-    app.initializeApp(firebaseConfig);
+    this.app = app;
+    this.app.initializeApp(firebaseConfig);
 
     /* Firebase APIs */
 
-    this.auth = app.auth();
-    this.db = app.firestore();
+    this.auth = this.app.auth();
+    this.db = this.app.firestore();
 
     this.auth.signInWithEmailAndPassword(Email, Password).catch((errors) => {
       console.log("ERROR AUTENTICATION :", errors);
     });
-    this.storage = app.storage();
   }
 
   // ***********[FIREBASE API]*************
   batch = () => this.db.batch();
-  
+
   users = () => this.db.collection("users");
   user = (uuid) => this.db.doc(`users/${uuid}`);
 
@@ -44,7 +44,7 @@ class Firebase {
   allNews = () => this.db.collection("news");
   news = (uuid) => this.db.doc(`allNews/${uuid}`);
 
-  firebaseStorage = () => this.storage;
+  storageRef = () => this.app.storage().ref();
 }
 
 export default Firebase;

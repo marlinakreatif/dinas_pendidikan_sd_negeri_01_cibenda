@@ -61,6 +61,7 @@
   width: 100vw;
   height: 100vh;
   z-index: 1;
+  background-color: rgba(0, 128, 128, 0.301);
 }
 
 .load-center {

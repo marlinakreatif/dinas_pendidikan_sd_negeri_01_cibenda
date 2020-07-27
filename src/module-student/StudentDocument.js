@@ -4,11 +4,12 @@ import { Form, Row, Col, Button } from "react-bootstrap";
 import { TableCaption } from "../utilities/table";
 import { STUDENTS } from "../constants/routes";
 import { Student } from "../model";
+import { FileInput, Loading } from "../components";
 
 class StudentDocument extends Component {
   constructor(props) {
     super(props);
-    this.state = { student: new Student() };
+    this.state = { student: new Student(), isLoading: true };
   }
   componentDidMount() {
     const { firebase } = this.props;
@@ -17,16 +18,23 @@ class StudentDocument extends Component {
       .student(id)
       .get()
       .then((doc) => {
+        let student = doc.data();
+        student.tanggal_lahir = student.tanggal_lahir.toDate();
         this.setState({
-          student: doc.data(),
+          student,
+          isLoading: false,
         });
       })
       .catch((err) => {
         console.log(err);
+        this.setState({ isLoading: false });
       });
   }
   render() {
-    const { student } = this.state;
+    const { student, isLoading } = this.state;
+    if (isLoading) {
+      return <Loading />;
+    }
     return (
       <div className="content-layout">
         <Form>
@@ -34,25 +42,27 @@ class StudentDocument extends Component {
           <hr />
           <Row>
             <Col sm={{ span: 2, offset: 1 }}>Nama siswa</Col>
-            <Col sm={4}>{student.nama}</Col>
+            <Col sm={4}>{": " + student.nama}</Col>
             <Col sm={2}>No. NISN</Col>
-            <Col sm={3}>{student.nisn}</Col>
+            <Col sm={3}>{": " + student.nisn}</Col>
           </Row>
           <Row>
             <Col sm={{ span: 2, offset: 1 }}>Nama Ibu</Col>
-            <Col sm={4}>{student.nama_ibu}</Col>
+            <Col sm={4}>{": " + student.nama_ibu}</Col>
             <Col sm={2}>Alamat</Col>
-            <Col sm={3}>{student.alamat}</Col>
+            <Col sm={3}>{": " + student.alamat}</Col>
           </Row>
           <Row>
             <Col sm={{ span: 2, offset: 1 }}>Tempat Lahi</Col>
-            <Col sm={4}>{student.tempat_lahir}</Col>
+            <Col sm={4}>{": " + student.tempat_lahir}</Col>
             <Col sm={2}>Tanggal Lahir</Col>
-            <Col sm={3}>{student.tanggal_lahir.toString()}</Col>
+            <Col sm={3}>
+              {": " + student.tanggal_lahir.toLocaleDateString()}
+            </Col>
           </Row>
           <Row>
             <Col sm={{ span: 2, offset: 1 }}>Tahun Masuk</Col>
-            <Col sm={4}>{student.tahun_masuk}</Col>
+            <Col sm={4}>{": " + student.tahun_masuk}</Col>
           </Row>
           <hr />
           <Form.Group as={Row} controlId="kartu_keluarga">
@@ -60,11 +70,12 @@ class StudentDocument extends Component {
               Kartu Keluarga
             </Form.Label>
             <Col sm={5}>
-              <Form.Control
+              {/* <Form.Control
                 size="sm"
                 type="file"
                 placeholder="unggah kartu keluarga"
-              />
+              /> */}
+              <FileInput />
             </Col>
           </Form.Group>
           <Form.Group as={Row} controlId="kartu_keluarga">

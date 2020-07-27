@@ -3,6 +3,7 @@ import { withFirebase } from "../firebase-config";
 import readXlsxFile from "read-excel-file";
 import { Table, Button } from "react-bootstrap";
 import { TableCaption } from "../utilities/table";
+import { Loading } from "../components";
 
 class StudentImport extends Component {
   state = {
@@ -22,6 +23,9 @@ class StudentImport extends Component {
    */
   onFileChange = (event) => {
     let files = event.target.files;
+    this.setState({
+      isLoading: true,
+    });
     readXlsxFile(files[0]).then((rows) => {
       if (rows.length > 2) {
         let data = [];
@@ -40,6 +44,7 @@ class StudentImport extends Component {
         });
         this.setState({
           students: data,
+          isLoading: false,
         });
       }
     });
@@ -48,6 +53,7 @@ class StudentImport extends Component {
   batchSaveData = () => {
     const { students } = this.state;
     const { firebase } = this.props;
+    this.setState({ isLoading: true });
     let batch = firebase.batch();
     students.forEach((student) => {
       let studentDocRef = firebase.db.collection("students").doc();
@@ -58,16 +64,23 @@ class StudentImport extends Component {
       .commit()
       .then(() => {
         console.log("Documents Created");
+        this.setState({
+          isLoading: false,
+        });
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
+        this.setState({
+          isLoading: false,
+        });
       });
   };
 
   render() {
-    const { students } = this.state;
+    const { students, isLoading } = this.state;
     return (
       <div className="content-layout">
+        {isLoading && <Loading />}
         <TableCaption icon="fa-users" title="Impor Data Siswa/Siswi" />
         <hr />
         <Table bordered>
