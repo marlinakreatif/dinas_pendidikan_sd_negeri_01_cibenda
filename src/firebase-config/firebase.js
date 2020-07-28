@@ -44,7 +44,6 @@ class Firebase {
   allNews = () => this.db.collection("news");
   news = (uuid) => this.db.doc(`allNews/${uuid}`);
 
-  storageRef = () => this.app.storage().ref();
 }
 
 export default Firebase;

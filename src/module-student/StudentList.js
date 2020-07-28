@@ -3,12 +3,14 @@ import { withFirebase } from "../firebase-config";
 import BootstrapTable from "react-bootstrap-table-next";
 import { TableCaption, STUDENT_COLUMS } from "../utilities/table";
 import { STUDENT_CREATE } from "../constants/routes";
-import { Loading } from "../components";
+import { Loading, Dialog } from "../components";
 
 class StudentList extends Component {
   state = {
     students: [],
     isLoading: true,
+    show: false,
+    message: "",
   };
   componentDidMount() {
     const { firebase } = this.props;
@@ -20,17 +22,15 @@ class StudentList extends Component {
         querySnapshots.forEach((doc) => {
           docs.push({ uuid: doc.id, ...doc.data() });
         });
-        console.log("Students", docs);
         this.setState({ students: docs, isLoading: false });
       })
-      .catch((errors) => {
-        console.log("Error when fetching students collections", errors);
-        this.setState({ isLoading: false });
+      .catch((error) => {
+        this.setState({ isLoading: false, message: error, show: true });
       });
   }
 
   render() {
-    const { students, isLoading } = this.state;
+    const { students, isLoading, show, message } = this.state;
     if (isLoading) {
       return <Loading />;
     }
@@ -50,6 +50,12 @@ class StudentList extends Component {
           }
           bordered={false}
           classes="table-sm table-responsive-xl"
+        />
+        <Dialog.Notification
+          show={show}
+          message={message}
+          handleClose={() => this.setState({ show: false })}
+          size="sm"
         />
       </div>
     );
