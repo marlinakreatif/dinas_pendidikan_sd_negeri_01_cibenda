@@ -4,6 +4,7 @@ import ShowInput from "./ShowInput";
 import { withFirebase } from "../../firebase-config";
 import { Dialog } from "../";
 import * as MESSAGE from "../../constants/message";
+import FileSaver from "file-saver";
 
 class FileInput extends Component {
   constructor(props) {
@@ -12,11 +13,12 @@ class FileInput extends Component {
       progress: 0,
       confirmation: false,
       notification: false,
+      viewer: false,
       message: null,
     };
   }
   onFileChange = (event) => {
-    let currentStateRef = this;
+    let currentInstanceRef = this;
     let file = event.target.files[0];
     const { firebase, fileType, uuid, setBack } = this.props;
     let storageRef = firebase.app.storage().ref();
@@ -31,12 +33,12 @@ class FileInput extends Component {
         // Observe state change events such as progress, pause, and resume
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        currentStateRef.setState({
+        currentInstanceRef.setState({
           progress,
         });
       },
       function (error) {
-        currentStateRef.setState({
+        currentInstanceRef.setState({
           message: MESSAGE.UPLOAD_FAILED,
           notification: true,
         });
@@ -45,7 +47,7 @@ class FileInput extends Component {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-          currentStateRef.setState({
+          currentInstanceRef.setState({
             progress: 0,
           });
           firebase.student(uuid).update({
@@ -58,7 +60,7 @@ class FileInput extends Component {
   };
 
   onFileDelete = () => {
-    let currentStateRef = this;
+    let currentInstanceRef = this;
     const { firebase, defaultValue, fileType, uuid, setBack } = this.props;
     let storageRef = firebase.app.storage().ref();
     let studentFilesRef = storageRef.child(`${uuid}`);
@@ -70,7 +72,7 @@ class FileInput extends Component {
     delteFileRef
       .delete()
       .then(function () {
-        currentStateRef.setState({
+        currentInstanceRef.setState({
           message: MESSAGE.DELETE_SUCCESS,
           notification: true,
           confirmation: false,
@@ -81,27 +83,57 @@ class FileInput extends Component {
         setBack(null);
       })
       .catch(function (error) {
-        currentStateRef.setState({
+        currentInstanceRef.setState({
           message: MESSAGE.DELETE_FAILED,
           notification: true,
           confirmation: false,
         });
       });
   };
+
+  onFileDownload = () => {
+    const { defaultValue } = this.props;
+    const currentInstanceRef = this;
+
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = "blob";
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        var blob = xhr.response;
+        currentInstanceRef.downloadToLocale(defaultValue.fileName, blob);
+      }
+    };
+
+    xhr.open("GET", defaultValue.url);
+    xhr.send();
+  };
+
+  downloadToLocale = (fileName, blob) => {
+    FileSaver.saveAs(blob, fileName);
+  };
   render() {
     const { defaultValue } = this.props;
-    const { progress, confirmation, notification, message } = this.state;
+    const {
+      progress,
+      confirmation,
+      notification,
+      message,
+      viewer,
+    } = this.state;
     return (
       <div>
         {defaultValue && (
           <ShowFile
             value={defaultValue}
+            onDownload={this.onFileDownload}
             onDelete={() =>
               this.setState({
                 confirmation: true,
                 message: `${MESSAGE.CONFIRMATION_DELETE_FILE} ${defaultValue.fileName}`,
               })
             }
+            onOpenViewer={() => this.setState({ viewer: true })}
           />
         )}
         {!defaultValue && (
@@ -111,12 +143,19 @@ class FileInput extends Component {
           show={confirmation}
           message={message}
           handleClose={() => this.setState({ confirmation: false })}
-          doTask={this.onFileDelete}
+          feedback={this.onFileDelete}
         />
         <Dialog.Notification
           show={notification}
           message={message}
           handleClose={() => this.setState({ notification: false })}
+        />
+        <Dialog.FileViewer
+          show={viewer}
+          message={defaultValue}
+          handleClose={() => this.setState({ viewer: false })}
+          download={this.onFileDownload}
+          size="lg"
         />
       </div>
     );
