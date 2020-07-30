@@ -33,6 +33,7 @@ export const STUDENT_COLUMS = [
   {
     dataField: "tahun_masuk",
     text: "Tahun",
+    headerStyle: () => ColumnWidth(100),
   },
   {
     dataField: "url_rapor",

@@ -19,5 +19,6 @@ export class Student {
     this.url_akte = "";
     this.url_ktp = "";
     this.url_rapor = "";
+    this.url_pp= ""
   }
 }

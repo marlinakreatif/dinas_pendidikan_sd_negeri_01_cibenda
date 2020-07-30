@@ -4,6 +4,8 @@ import readXlsxFile from "read-excel-file";
 import { Table, Button } from "react-bootstrap";
 import { TableCaption } from "../utilities/table";
 import { Loading } from "../components";
+import dateFormat from "date-format";
+import { STUDENTS } from "../constants/routes";
 
 class StudentImport extends Component {
   state = {
@@ -31,12 +33,16 @@ class StudentImport extends Component {
         let data = [];
         rows.forEach((row, index) => {
           if (index > 0) {
+            let date =
+              typeof row[4] === "string"
+                ? new Date(row[4])
+                : this.getDateFromExcelDate(row[4]);
             data.push({
               nama: row[0],
               nisn: row[1],
               alamat: row[2],
               tempat_lahir: row[3],
-              tanggal_lahir: row[4],
+              tanggal_lahir: date,
               nama_ibu: row[5],
               tahun_masuk: row[6],
             });
@@ -48,6 +54,15 @@ class StudentImport extends Component {
         });
       }
     });
+  };
+
+  getDateFromExcelDate = (excelDate) => {
+    console.log("EXCEL DATE", excelDate);
+    let e0date = new Date(0); // epoch "zero" date
+    let offset = e0date.getTimezoneOffset(); // tz offset in min
+
+    // calculate Excel xxx days later, with local tz offset
+    return new Date(0, 0, excelDate - 1, 0, -offset, 0);
   };
 
   batchSaveData = () => {
@@ -63,10 +78,10 @@ class StudentImport extends Component {
     batch
       .commit()
       .then(() => {
-        console.log("Documents Created");
         this.setState({
           isLoading: false,
         });
+        this.props.history.push(STUDENTS);
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
@@ -133,7 +148,9 @@ class StudentImport extends Component {
                     <td>{data.alamat}</td>
                     <td>{data.nama_ibu}</td>
                     <td>{data.tempat_lahir}</td>
-                    <td>{data.tanggal_lahir}</td>
+                    <td>
+                      {dateFormat.asString("dd-MM-yyyy", data.tanggal_lahir)}
+                    </td>
                     <td>{data.tahun_masuk}</td>
                   </tr>
                 );

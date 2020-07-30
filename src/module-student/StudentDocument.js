@@ -66,6 +66,21 @@ class StudentDocument extends Component {
             <Col sm={4}>{": " + student.tahun_masuk}</Col>
           </Row>
           <hr />
+          <Form.Group as={Row} controlId="photo_profile">
+            <Form.Label column="sm" sm={{ span: 2, offset: 1 }}>
+              Photo Siswa
+            </Form.Label>
+            <Col sm={8}>
+              <FileInput
+                fileType="url_pp"
+                defaultValue={student.url_pp}
+                uuid={uuid}
+                setBack={(value) =>
+                  this.setState({ student: { ...student, url_pp: value } })
+                }
+              />
+            </Col>
+          </Form.Group>
           <Form.Group as={Row} controlId="kartu_keluarga">
             <Form.Label column="sm" sm={{ span: 2, offset: 1 }}>
               Kartu Keluarga
