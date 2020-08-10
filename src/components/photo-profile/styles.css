@@ -1,0 +1,15 @@
+.btn-upload-pp {
+  padding: 50px 15px;
+  font-size: 30px;
+  text-align: center;
+  color: #0b0b0b8a;
+}
+.btn-upload-pp:hover {
+  padding-top: 45px;
+  font-size: 40px;
+  cursor: pointer;
+}
+.btn-upload-pp:active {
+  padding-top: 50px;
+  font-size: 30px;
+}

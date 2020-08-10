@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import ReactToPrint from "react-to-print";
-import { Button, Table, Form } from "react-bootstrap";
+import { Button, Table, Form, Row, Col } from "react-bootstrap";
 import { TableCaption } from "../utilities/table";
 import YearListGenerator from "../utilities/functional/YearListGenerator";
-import { Loading } from "../components";
+import { Loading, PhotoProfile } from "../components";
 import { withFirebase } from "../firebase-config";
+import dateFormat from "date-format";
 
 const PrintButton = ({ toPrintRef }) => {
   return (
@@ -12,7 +13,7 @@ const PrintButton = ({ toPrintRef }) => {
       trigger={() => {
         return (
           <Button variant="light" block>
-            <i className="fa fa-download"></i> {" Print NISN"}
+            <i className="fa fa-print"></i> {" Print NISN"}
           </Button>
         );
       }}
@@ -25,14 +26,45 @@ const PrintButton = ({ toPrintRef }) => {
 
 const NisnCard = ({ student }) => {
   return (
-    <div
-      style={{
-        width: "1000px",
-        height: "310px",
-        margin: "20px 10px",
-      }}
-    >
-      <img src="/NISN.jpeg" alt="" style={{ width: "100%", height: "100%" }} />
+    <div className="nisn-card">
+      <img src="/NISN.jpeg" alt="nisn_bg" />
+      <div className="nisn-content">
+        <Row>
+          <Col sm={3}>Nama</Col>
+          <Col>{`: ${student.nama}`}</Col>
+        </Row>
+        <Row>
+          <Col sm={3}>NISN</Col>
+          <Col>{`: ${student.nisn}`}</Col>
+        </Row>
+        <Row>
+          <Col sm={3}>Tempat Lahir</Col>
+          <Col>{`: ${student.tempat_lahir}`}</Col>
+        </Row>
+        <Row>
+          <Col sm={3}>Tanggal Lahir</Col>
+          <Col>{`: ${dateFormat.asString(
+            "dd-MM-yyyy",
+            student.tanggal_lahir.toDate()
+          )}`}</Col>
+        </Row>
+        <Row>
+          <Col sm={3}>Jenis Kelamin</Col>
+          <Col>{`: ${student.jenis_kelamin}`}</Col>
+        </Row>
+        <Row>
+          <Col sm={3}>Ibu Kandung</Col>
+          <Col>{`: ${student.nama_ibu}`}</Col>
+        </Row>
+      </div>
+
+      <div className="nisn-pp">
+        <PhotoProfile
+          uuid={student.uuid}
+          url_pp={student.url_pp}
+         
+        />
+      </div>
     </div>
   );
 };

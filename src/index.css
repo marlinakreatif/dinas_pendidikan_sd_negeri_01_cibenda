@@ -1,4 +1,3 @@
-
 .supported-by {
   position: absolute;
   right: 30px;
@@ -22,4 +21,41 @@
   border-radius: 5px;
   font-size: 14px;
   color: #495057;
+}
+
+/* NISN CARD */
+.nisn-card {
+  width: 1000px;
+  height: 310px;
+  margin: 20px 10px;
+  position: relative;
+}
+
+.nisn-card > img {
+  width: 100%;
+  height: 100%;
+}
+
+.nisn-card > .nisn-content {
+  position: absolute;
+  top: 120px;
+  left: 35px;
+  width: 400px;
+  font-size: 14px;
+  background-color: transparent;
+}
+
+.nisn-content > .row > .col-sm-3 {
+  font-weight: bold;
+}
+.nisn-content > .row > .col,
+.nisn-content > .row > .col-sm-3 {
+  padding: 0px;
+}
+
+.nisn-pp {
+  position: absolute;
+  top: 150px;
+  left: 350px;
+  background-color: white;
 }
