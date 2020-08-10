@@ -44,7 +44,7 @@ class StudentImport extends Component {
               tempat_lahir: row[3],
               tanggal_lahir: date,
               nama_ibu: row[5],
-              tahun_masuk: row[6],
+              tahun_masuk: `${row[6]}`,
             });
           }
         });
