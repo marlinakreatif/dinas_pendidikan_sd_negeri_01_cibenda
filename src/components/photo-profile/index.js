@@ -16,32 +16,25 @@ const DialogUploader = ({ show, handleClose, onChange, progress }) => {
       <Modal.Header closeButton>
         <Modal.Title>{"Unggah Photo Profile"}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="modal-body-style">
         <ShowInput onChange={onChange} progress={progress} />
       </Modal.Body>
     </Modal>
   );
 };
 
-// this props contain {uuid, url_pp}
+// this props contain {uuid, url_pp, setBack}
 class PhotoProfile extends Component {
   state = {
     show: false,
-    progress: 0,
-    url_pp: "",
+    progress: 1,
   };
-
-  componentDidMount() {
-    this.setState({
-      url_pp: this.props.url_pp,
-    });
-  }
 
   onFileChange = (event) => {
     let file = event.target.files[0],
       fileType = "url_pp",
       currentInstanceRef = this;
-    const { firebase, uuid } = this.props;
+    const { firebase, uuid, updateStudent, index } = this.props;
     let storageRef = firebase.app.storage().ref();
     let studentFilesRef = storageRef.child(`${uuid}`);
 
@@ -75,13 +68,14 @@ class PhotoProfile extends Component {
           firebase.student(uuid).update({
             [fileType]: { url: downloadURL, fileName: file.name },
           });
+          updateStudent({ url: downloadURL, fileName: file.name }, index);
         });
       }
     );
   };
   render() {
-    const { uuid, option } = this.props;
-    const { show, progress, url_pp } = this.state;
+    const { uuid, option, url_pp } = this.props;
+    const { show, progress } = this.state;
     const styleOpt = option ? option : { width: "120px", height: "140px" };
     return (
       <div style={styleOpt} id={uuid}>

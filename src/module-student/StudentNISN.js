@@ -6,6 +6,7 @@ import YearListGenerator from "../utilities/functional/YearListGenerator";
 import { Loading, PhotoProfile } from "../components";
 import { withFirebase } from "../firebase-config";
 import dateFormat from "date-format";
+import QRCode from "qrcode.react";
 
 const PrintButton = ({ toPrintRef }) => {
   return (
@@ -24,37 +25,45 @@ const PrintButton = ({ toPrintRef }) => {
   );
 };
 
-const NisnCard = ({ student }) => {
+const NisnCard = ({ student, index, updateStudent }) => {
+  const {
+    nama,
+    nisn,
+    tempat_lahir,
+    tanggal_lahir,
+    jenis_kelamin,
+    nama_ibu,
+  } = student;
   return (
     <div className="nisn-card">
       <img src="/NISN.jpeg" alt="nisn_bg" />
       <div className="nisn-content">
         <Row>
           <Col sm={3}>Nama</Col>
-          <Col>{`: ${student.nama}`}</Col>
+          <Col>{`: ${nama}`}</Col>
         </Row>
         <Row>
           <Col sm={3}>NISN</Col>
-          <Col>{`: ${student.nisn}`}</Col>
+          <Col>{`: ${nisn}`}</Col>
         </Row>
         <Row>
           <Col sm={3}>Tempat Lahir</Col>
-          <Col>{`: ${student.tempat_lahir}`}</Col>
+          <Col>{`: ${tempat_lahir}`}</Col>
         </Row>
         <Row>
           <Col sm={3}>Tanggal Lahir</Col>
           <Col>{`: ${dateFormat.asString(
             "dd-MM-yyyy",
-            student.tanggal_lahir.toDate()
+            tanggal_lahir.toDate()
           )}`}</Col>
         </Row>
         <Row>
           <Col sm={3}>Jenis Kelamin</Col>
-          <Col>{`: ${student.jenis_kelamin}`}</Col>
+          <Col>{`: ${jenis_kelamin}`}</Col>
         </Row>
         <Row>
           <Col sm={3}>Ibu Kandung</Col>
-          <Col>{`: ${student.nama_ibu}`}</Col>
+          <Col>{`: ${nama_ibu}`}</Col>
         </Row>
       </div>
 
@@ -62,7 +71,20 @@ const NisnCard = ({ student }) => {
         <PhotoProfile
           uuid={student.uuid}
           url_pp={student.url_pp}
-         
+          index={index}
+          updateStudent={updateStudent}
+        />
+      </div>
+
+      <div className="nisn-qr">
+        <QRCode
+          value={`NISN:${nisn}, Nama:${nama}, Jenis Kelamin: ${jenis_kelamin}, Tempat Lahir:${tempat_lahir}, Tanggal Lahir: ${dateFormat.asString(
+            "dd-MM-yyyy",
+            tanggal_lahir.toDate()
+          )}`}
+          size={100}
+          level="M"
+          includeMargin={true}
         />
       </div>
     </div>
@@ -105,6 +127,13 @@ class StudentNISN extends Component {
       .catch(function (error) {
         console.log("Error getting documents: ", error);
       });
+  };
+  updateStudent = (url_pp, index) => {
+    let students = this.state.students;
+    students[index].url_pp = url_pp;
+    this.setState({
+      students,
+    });
   };
   render() {
     const { students, years, tahun_masuk, isLoading } = this.state;
@@ -152,7 +181,14 @@ class StudentNISN extends Component {
                   style={{ minHeight: "100px" }}
                 >
                   {students.map((data, index) => {
-                    return <NisnCard student={data} key={"index-" + index} />;
+                    return (
+                      <NisnCard
+                        student={data}
+                        key={"index-" + index}
+                        index={index}
+                        updateStudent={this.updateStudent}
+                      />
+                    );
                   })}
                 </div>
               </td>
