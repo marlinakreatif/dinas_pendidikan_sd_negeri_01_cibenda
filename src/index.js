@@ -5,6 +5,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import "./fonts/font-type-1.ttf"
+import "./fonts/font-type-2.ttf"
+import "./fonts/font-type-3.TTF"
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import Firebase, { FirebaseContext } from "./firebase-config";

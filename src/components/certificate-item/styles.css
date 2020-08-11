@@ -1,0 +1,95 @@
+.certificate {
+  width: 842px;
+  height: 595px;
+  position: relative;
+  border: 1px solid rgba(226, 226, 226, 0.705);
+  margin: 15px;
+}
+
+.certificate > .image {
+  width: 100%;
+  height: 100%;
+}
+
+.certificate > .content {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 60px 50px;
+}
+
+.certificate > .content > .title {
+  font-weight: bold;
+  font-family: FontType3;
+  font-size: 70px;
+  line-height: 70px;
+}
+.template-1 > .content > .title {
+  color: #971c1f;
+}
+.template-2 > .content > .title {
+  color: #1f5794;
+  font-size: 60px;
+  line-height: 60px;
+  margin-top: 20px;
+  margin-bottom: -10px;
+}
+
+.certificate > .content > .to {
+  font-size: 12px;
+  margin: 15px;
+}
+.template-2 > .content > .to {
+  margin: 15px 0px 5px 0px;
+}
+
+.certificate > .content > .penerima {
+  font-family: FontType3;
+  font-size: 60px;
+  line-height: 60px;
+}
+
+.template-1 > .content > .penerima {
+  color: #73470d;
+}
+
+.template-2 > .content > .penerima {
+  color: royalblue;
+}
+
+.certificate > .content > .penghargaan {
+  font-size: 50px;
+  line-height: 50px;
+  font-family: FontType3;
+  font-weight: bold;
+}
+
+.template-1 > .content > .penghargaan {
+  color: #971c1f;
+}
+
+.template-2 > .content > .penghargaan {
+  color: #1f5794;
+}
+
+.certificate > .content > .deskripsi {
+  font-size: 13px;
+  padding: 15px 15%;
+  text-align: justify;
+}
+.ttj {
+  text-align: left;
+  padding-right: 50px;
+  font-size: 13px;
+}
+
+.pemberi {
+  margin-top: 40px;
+}
+
+.template-4 > .content > div > .ttj {
+  padding-right: 120px;
+}
