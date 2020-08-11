@@ -3,7 +3,7 @@ import { withFirebase } from "../../firebase-config";
 import "./styles.css";
 import { Modal } from "react-bootstrap";
 import ShowInput from "../file-input/ShowInput";
-import * as MESSAGE from "../../constants/message";
+import { MESSAGES } from "../../constants";
 
 const DialogUploader = ({ show, handleClose, onChange, progress }) => {
   return (
@@ -53,7 +53,7 @@ class PhotoProfile extends Component {
       },
       function (error) {
         currentInstanceRef.setState({
-          message: MESSAGE.UPLOAD_FAILED,
+          message: MESSAGES.UPLOAD_FAILED,
           notification: true,
         });
       },

@@ -11,9 +11,10 @@ import {
   StudentNISN,
   StudentImport,
   StudentDocument,
+  StudentCertificate,
 } from "./../module-student";
 import { EventPage } from "../module-school";
-import * as ROUTES from "./../constants/routes";
+import { ROUTES } from "./../constants";
 import Sidemenu from "./Sidemenu";
 
 export default function Home(props) {
@@ -55,6 +56,11 @@ export default function Home(props) {
         <Route
           path={ROUTES.STUDENT_DOCUMENT}
           component={StudentDocument}
+          exact
+        />
+        <Route
+          path={ROUTES.STUDENT_CERTIFICATE}
+          component={StudentCertificate}
           exact
         />
 

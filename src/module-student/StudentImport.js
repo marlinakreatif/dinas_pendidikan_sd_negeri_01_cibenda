@@ -5,7 +5,7 @@ import { Table, Button } from "react-bootstrap";
 import { TableCaption } from "../utilities/table";
 import { Loading } from "../components";
 import dateFormat from "date-format";
-import { STUDENTS } from "../constants/routes";
+import { ROUTES } from "../constants";
 
 class StudentImport extends Component {
   state = {
@@ -81,7 +81,7 @@ class StudentImport extends Component {
         this.setState({
           isLoading: false,
         });
-        this.props.history.push(STUDENTS);
+        this.props.history.push(ROUTES.STUDENTS);
       })
       .catch((error) => {
         console.error("Error adding document: ", error);

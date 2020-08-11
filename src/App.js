@@ -3,7 +3,7 @@ import { HashRouter, Route } from "react-router-dom";
 import Login from "./login/Login";
 import Home from "./home/Home";
 import EventPage from "./module-school/EventPage";
-import * as ROUTES from "./constants/routes";
+import { ROUTES } from "./constants";
 
 function App() {
   return (

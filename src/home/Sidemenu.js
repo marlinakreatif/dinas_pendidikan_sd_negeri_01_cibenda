@@ -1,6 +1,6 @@
 import React from "react";
 import { Accordion, Card } from "react-bootstrap";
-import * as ROUTES from "./../constants/routes";
+import { ROUTES } from "./../constants";
 import { SubMenuItem } from "./SidemenuComponent";
 
 export default function Sidemenu() {
@@ -61,7 +61,7 @@ export default function Sidemenu() {
                     text="Siswa Baru"
                   />
                 </li>
-                
+
                 <li>
                   <SubMenuItem
                     icon="fa-dot-circle-o"
@@ -77,6 +77,14 @@ export default function Sidemenu() {
                     size="fa-lg"
                     to={ROUTES.STUDENT_NISN}
                     text="Kartu NISN"
+                  />
+                </li>
+                <li>
+                  <SubMenuItem
+                    icon="fa-dot-circle-o"
+                    size="fa-lg"
+                    to={ROUTES.STUDENT_CERTIFICATE}
+                    text="Piagam Penghargaan"
                   />
                 </li>
               </ul>

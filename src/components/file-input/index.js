@@ -3,7 +3,7 @@ import ShowFile from "./ShowFile";
 import ShowInput from "./ShowInput";
 import { withFirebase } from "../../firebase-config";
 import { Dialog } from "../";
-import * as MESSAGE from "../../constants/message";
+import {MESSAGES} from "../../constants";
 import FileSaver from "file-saver";
 
 class FileInput extends Component {
@@ -39,7 +39,7 @@ class FileInput extends Component {
       },
       function (error) {
         currentInstanceRef.setState({
-          message: MESSAGE.UPLOAD_FAILED,
+          message: MESSAGES.UPLOAD_FAILED,
           notification: true,
         });
       },
@@ -73,7 +73,7 @@ class FileInput extends Component {
       .delete()
       .then(function () {
         currentInstanceRef.setState({
-          message: MESSAGE.DELETE_SUCCESS,
+          message: MESSAGES.DELETE_SUCCESS,
           notification: true,
           confirmation: false,
         });
@@ -84,7 +84,7 @@ class FileInput extends Component {
       })
       .catch(function (error) {
         currentInstanceRef.setState({
-          message: MESSAGE.DELETE_FAILED,
+          message: MESSAGES.DELETE_FAILED,
           notification: true,
           confirmation: false,
         });
@@ -130,7 +130,7 @@ class FileInput extends Component {
             onDelete={() =>
               this.setState({
                 confirmation: true,
-                message: `${MESSAGE.CONFIRMATION_DELETE_FILE} ${defaultValue.fileName}`,
+                message: `${MESSAGES.CONFIRMATION_DELETE_FILE} ${defaultValue.fileName}`,
               })
             }
             onOpenViewer={() => this.setState({ viewer: true })}

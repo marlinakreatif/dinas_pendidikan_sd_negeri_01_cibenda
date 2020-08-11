@@ -12,4 +12,5 @@ export const STUDENT_IMPORT = `${BASE_ADMIN}/student-import`;
 export const STUDENT_NISN = `${BASE_ADMIN}/student-nisn`;
 export const NEWS = `${BASE_ADMIN}/all-news`;
 export const NEWS_COU = `${BASE_ADMIN}/news-cou`;
-export const NEW_PUBLISH = `/`;
+export const NEWS_PUBLISH = `/`;
+export const STUDENT_CERTIFICATE = `${BASE_ADMIN}/certificate`;
