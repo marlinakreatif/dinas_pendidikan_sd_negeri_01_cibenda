@@ -4,6 +4,7 @@ import { CERTIFICATE_TEMPLATE } from "../constants";
 import { Row, Col, Card, Form, Button, Modal } from "react-bootstrap";
 import { MCertificate } from "../model";
 import ReactDatePicker from "react-datepicker";
+import ReactToPrint from "react-to-print";
 
 const GeneralConfig = ({
   show,
@@ -198,6 +199,8 @@ export default class StudentCertificate extends Component {
     updateNameIndex: 0,
   };
 
+  componentToPrintRef = React.createRef();
+
   componentDidMount() {
     this.generateCertificate();
   }
@@ -277,9 +280,21 @@ export default class StudentCertificate extends Component {
                 >
                   <i className="fa fa-cog fa-3x"></i>
                 </Button>
-                <Button className="m-1" variant="light" title="Cetak Piagam">
-                  <i className="fa fa-print fa-3x"></i>
-                </Button>
+                <ReactToPrint
+                  trigger={() => {
+                    return (
+                      <Button
+                        className="m-1"
+                        variant="light"
+                        title="Cetak Piagam"
+                      >
+                        <i className="fa fa-print fa-3x"></i>
+                      </Button>
+                    );
+                  }}
+                  content={() => this.componentToPrintRef}
+                  pageStyle="@page { size: auto; margin: 5mm; }"
+                />
               </Card.Body>
             </Card>
           </Col>
@@ -307,7 +322,10 @@ export default class StudentCertificate extends Component {
           </Col>
         </Row>
 
-        <div className="certificate-container">
+        <div
+          className="certificate-container"
+          ref={(el) => (this.componentToPrintRef = el)}
+        >
           {certificates.map((data, index) => {
             return (
               <CertificateItem
