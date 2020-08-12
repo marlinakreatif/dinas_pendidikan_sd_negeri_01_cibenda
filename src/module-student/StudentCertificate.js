@@ -145,7 +145,7 @@ const GeneralConfig = ({
   );
 };
 
-const NameConfig = ({ show, onClose, penerima, onChange }) => {
+const NameConfig = ({ show, onClose, certificate, onChange }) => {
   return (
     <Modal
       show={show}
@@ -156,19 +156,34 @@ const NameConfig = ({ show, onClose, penerima, onChange }) => {
       <Modal.Header closeButton>
         <Modal.Title>
           <i className="fa fa-cog"></i>
-          {" Ubah Nama Penerima"}
+          {"Ubah Piagam"}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Row>
           <Col>
-            <Form.Control
-              type="text"
-              name="penerima"
-              placeholder="Nama penerima piagam"
-              onChange={onChange}
-              defaultValue={penerima}
-            />
+            <Form.Group controlId="input-">
+              <Form.Label>Nama Penerima</Form.Label>
+              <Form.Control
+                type="text"
+                name="penerima"
+                placeholder="Nama penerima piagam"
+                onChange={onChange}
+                defaultValue={certificate.penerima}
+              />
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Group controlId="input-tanggal">
+              <Form.Label> Nama Penghargaan</Form.Label>
+              <Form.Control
+                type="text"
+                name="penghargaan"
+                placeholder="Nama penghargaan piagam"
+                onChange={onChange}
+                defaultValue={certificate.penghargaan}
+              />
+            </Form.Group>
           </Col>
         </Row>
       </Modal.Body>
@@ -194,9 +209,9 @@ export default class StudentCertificate extends Component {
       ),
     },
     generalConfigShow: false,
-    updateNameShow: false,
-    updateName: "",
-    updateNameIndex: 0,
+    certificateShow: false,
+    certificateToUpdate: { penerima: null, penghargaan: null },
+    certificateToUpdateIndex: 0,
   };
 
   componentToPrintRef = React.createRef();
@@ -218,12 +233,15 @@ export default class StudentCertificate extends Component {
     this.setState({ certificates });
   };
 
-  onNameChange = (event) => {
+  onCertificateValueChange = (event) => {
     const { name, value } = event.target;
-    const { updateNameIndex } = this.state;
+    const { certificateToUpdateIndex } = this.state;
     let certificates = [...this.state.certificates];
-    let certificate = { ...certificates[updateNameIndex], [name]: value };
-    certificates[updateNameIndex] = certificate;
+    let certificate = {
+      ...certificates[certificateToUpdateIndex],
+      [name]: value,
+    };
+    certificates[certificateToUpdateIndex] = certificate;
     this.setState({
       certificates,
     });
@@ -255,8 +273,8 @@ export default class StudentCertificate extends Component {
       certificates,
       generalConfig,
       generalConfigShow,
-      updateName,
-      updateNameShow,
+      certificateToUpdate,
+      certificateShow,
     } = this.state;
     return (
       <div className="content-layout">
@@ -334,9 +352,12 @@ export default class StudentCertificate extends Component {
                 certificate={data}
                 onClick={() =>
                   this.setState({
-                    updateNameShow: true,
-                    updateName: data.penerima,
-                    updateNameIndex: index,
+                    certificateShow: true,
+                    certificateToUpdate: {
+                      penerima: data.penerima,
+                      penghargaan: data.penghargaan,
+                    },
+                    certificateToUpdateIndex: index,
                   })
                 }
               />
@@ -354,10 +375,10 @@ export default class StudentCertificate extends Component {
           }}
         />
         <NameConfig
-          show={updateNameShow}
-          onClose={() => this.setState({ updateNameShow: false })}
-          penerima={updateName}
-          onChange={this.onNameChange}
+          show={certificateShow}
+          onClose={() => this.setState({ certificateShow: false })}
+          certificate={certificateToUpdate}
+          onChange={this.onCertificateValueChange}
         />
       </div>
     );
