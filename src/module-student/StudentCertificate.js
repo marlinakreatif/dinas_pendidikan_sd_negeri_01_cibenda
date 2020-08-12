@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import { CertificateItem } from "../components";
 import { CERTIFICATE_TEMPLATE } from "../constants";
-import { Row, Col, Card, Form, Button, Modal } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Card,
+  Form,
+  Button,
+  Modal,
+  Accordion,
+  ButtonGroup,
+} from "react-bootstrap";
 import { MCertificate } from "../model";
 import ReactDatePicker from "react-datepicker";
 import ReactToPrint from "react-to-print";
@@ -278,67 +287,72 @@ export default class StudentCertificate extends Component {
     } = this.state;
     return (
       <div className="content-layout">
-        <h2>
-          <b>
-            <i className="fa fa-cogs"></i> {" Piagam Penghargaan"}
-          </b>
-          <hr />
-        </h2>
-        <Row>
-          <Col sm={3}>
-            <Card style={{ padding: "10px" }}>
-              <Card.Title>
-                <u>Pengaturan</u>
-              </Card.Title>
-              <Card.Body style={{ padding: "10px" }}>
-                <Button
-                  variant="light"
-                  title="Pengaturan Umum"
-                  onClick={() => this.setState({ generalConfigShow: true })}
-                >
-                  <i className="fa fa-cog fa-3x"></i>
-                </Button>
-                <ReactToPrint
-                  trigger={() => {
-                    return (
-                      <Button
-                        className="m-1"
-                        variant="light"
-                        title="Cetak Piagam"
-                      >
-                        <i className="fa fa-print fa-3x"></i>
-                      </Button>
-                    );
-                  }}
-                  content={() => this.componentToPrintRef}
-                  pageStyle="@page { size: auto; margin: 5mm; }"
-                />
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col sm={7}>
-            <Card style={{ padding: "10px" }}>
-              <Card.Title>
-                <u>Template</u>
-              </Card.Title>
-              <Card.Body style={{ padding: "0px" }}>
-                {CERTIFICATE_TEMPLATE.map((data, index) => {
-                  return (
-                    <div
-                      className="mini-template"
-                      key={"index-" + index}
-                      onClick={() =>
-                        this.setState({ theme: CERTIFICATE_TEMPLATE[index] })
-                      }
+        <Accordion>
+          <Card>
+            <Card.Header>
+              <h4>
+                <b>
+                  <i className="fa fa-cogs fa-lg" aria-hidden="true"></i>{" "}
+                  {" Piagam Penghargaan"}
+                </b>
+                <div className="pull-right">
+                  <ButtonGroup aria-label="Basic example">
+                    <Button
+                      variant="secondary"
+                      onClick={() => this.setState({ generalConfigShow: true })}
                     >
-                      <img src={data.mini_path} alt="mini template" />
-                    </div>
-                  );
-                })}
+                      <i className="fa fa-cog"></i>
+                      {" Pengaturan Umum"}
+                    </Button>
+                    <ReactToPrint
+                      trigger={() => {
+                        return (
+                          <Button variant="secondary" >
+                            <i className="fa fa-print"></i> {" Cetak Piagam"}
+                          </Button>
+                        );
+                      }}
+                      content={() => this.componentToPrintRef}
+                      pageStyle="@page { size: auto; margin: 5mm; }"
+                    />
+                    <Accordion.Toggle
+                      eventKey="0"
+                      as={Button}
+                      variant="secondary"
+                    >
+                      <i className="fa fa-image"></i> {" Template"}
+                    </Accordion.Toggle>
+                  </ButtonGroup>
+                </div>
+              </h4>
+            </Card.Header>
+
+            <Accordion.Collapse eventKey="0">
+              <Card.Body>
+                <Row>
+                  <Col sm={3}></Col>
+                  <Col sm={7}>
+                    {CERTIFICATE_TEMPLATE.map((data, index) => {
+                      return (
+                        <div
+                          className="mini-template"
+                          key={"index-" + index}
+                          onClick={() =>
+                            this.setState({
+                              theme: CERTIFICATE_TEMPLATE[index],
+                            })
+                          }
+                        >
+                          <img src={data.mini_path} alt="mini template" />
+                        </div>
+                      );
+                    })}
+                  </Col>
+                </Row>
               </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
 
         <div
           className="certificate-container"

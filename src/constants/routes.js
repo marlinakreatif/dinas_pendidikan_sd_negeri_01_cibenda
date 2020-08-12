@@ -14,3 +14,4 @@ export const NEWS = `${BASE_ADMIN}/all-news`;
 export const NEWS_COU = `${BASE_ADMIN}/news-cou`;
 export const NEWS_PUBLISH = `/`;
 export const STUDENT_CERTIFICATE = `${BASE_ADMIN}/certificate`;
+export const SCHOOL_PROFILE = `${BASE_ADMIN}/school-profile`
