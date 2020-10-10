@@ -299,6 +299,7 @@ export default class StudentCertificate extends Component {
                   <ButtonGroup aria-label="Basic example">
                     <Button
                       variant="secondary"
+                      size="sm"
                       onClick={() => this.setState({ generalConfigShow: true })}
                     >
                       <i className="fa fa-cog"></i>
@@ -307,7 +308,7 @@ export default class StudentCertificate extends Component {
                     <ReactToPrint
                       trigger={() => {
                         return (
-                          <Button variant="secondary" >
+                          <Button variant="secondary" size="sm">
                             <i className="fa fa-print"></i> {" Cetak Piagam"}
                           </Button>
                         );
@@ -319,6 +320,7 @@ export default class StudentCertificate extends Component {
                       eventKey="0"
                       as={Button}
                       variant="secondary"
+                      size="sm"
                     >
                       <i className="fa fa-image"></i> {" Template"}
                     </Accordion.Toggle>
